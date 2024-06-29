@@ -9,12 +9,12 @@ def get_number_of_islands(grid):
     def bfs_check(x, y):
         q = deque()
         q.append((x,y))
+        visited[cur_x][cur_y] = True
         dx = [-1, 1, 0, 0]
         dy = [0, 0, -1, 1]
 
         while q:
             cur_x, cur_y = q.popleft()
-            visited[cur_x][cur_y] = True
 
             for i in range(4):
                 next_x = cur_x + dx[i]
@@ -24,6 +24,7 @@ def get_number_of_islands(grid):
                     and not visited[next_x][next_y] and grid[next_x][next_y] == '1'
                 ):
                     q.append((next_x, next_y))
+                    visited[next_x][next_y] = True
 
     for i in range(col):
         for j in range(row):
