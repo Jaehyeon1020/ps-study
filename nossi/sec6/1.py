@@ -9,7 +9,7 @@ def get_number_of_islands(grid):
     def bfs_check(x, y):
         q = deque()
         q.append((x,y))
-        visited[cur_x][cur_y] = True
+        visited[x][y] = True
         dx = [-1, 1, 0, 0]
         dy = [0, 0, -1, 1]
 
