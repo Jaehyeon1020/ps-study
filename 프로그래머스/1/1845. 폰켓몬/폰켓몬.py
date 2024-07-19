@@ -1,14 +1,15 @@
 def solution(nums):
-    answer = 0
+    pokemons = {}
+    can_get = len(nums) / 2
     
-    selected = []
-    for poke in nums:
-        if poke not in selected:
-            selected.append(poke)
-            answer += 1
+    for po in nums:
+        if po not in pokemons:
+            pokemons[po] = 1
+            continue
+        pokemons[po] += 1
     
-    if answer > len(nums) / 2:
-        answer = len(nums) / 2
-    
-    
-    return answer
+    if len(pokemons.keys()) >= can_get:
+        return can_get
+    else:
+        return len(pokemons.keys())
+        
