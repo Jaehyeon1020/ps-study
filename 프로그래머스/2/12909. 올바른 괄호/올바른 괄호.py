@@ -1,13 +1,13 @@
 def solution(s):
     stack = []
     
-    for p in s:
-        if len(stack) > 0 and stack[-1] == '(' and p == ')':
+    for bracket in s:
+        if stack and stack[-1] == '(' and bracket == ')':
             stack.pop()
         else:
-            stack.append(p)
+            stack.append(bracket)
     
-    return True if len(stack) == 0 else False
+    return True if not stack else False
         
             
             
