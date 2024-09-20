@@ -28,7 +28,9 @@ def solution(orders, course):
         
         # 조합 구하기
         for combi in combi_save:
-            if len(combi) == size and combi_save[combi] == max_use and max_use >= 2:
+            if (len(combi) == size 
+                and combi_save[combi] == max_use
+                and max_use >= 2):
                 result.append(combi)
         
         answer.extend(result)
