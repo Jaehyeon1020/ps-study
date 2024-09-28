@@ -1,5 +1,3 @@
-# 14:19 - 
-
 def solution(str1, str2):
     str1, str2 = str1.lower(), str2.lower()
     
@@ -10,20 +8,16 @@ def solution(str1, str2):
     for i in range(len(str1) - 1):
         token = str1[i:i+2]
         if token.isalpha():
-            if token in str1_tokens:
-                str1_tokens[token] += 1
-            else:
-                str1_tokens[token] = 1
+            str1_tokens.setdefault(token, 0)
+            str1_tokens[token] += 1
+            
     
     # str2 토큰
     for i in range(len(str2) - 1):
         token = str2[i:i+2]
         if token.isalpha():
-            print(token)
-            if token in str2_tokens:
-                str2_tokens[token] += 1
-            else:
-                str2_tokens[token] = 1
+            str2_tokens.setdefault(token, 0)
+            str2_tokens[token] += 1
     
     intersec = []
     union = []
