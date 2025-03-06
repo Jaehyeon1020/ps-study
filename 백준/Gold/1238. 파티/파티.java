@@ -25,11 +25,9 @@ public class Main {
         while (!pq.isEmpty()) {
             Node cur = pq.poll();
 
-            if (!visited[cur.to]) {
-                dist[cur.to] = cur.dist;
-                visited[cur.to] = true;
-                if (cur.to == dest) return cur.dist;
-            }
+            dist[cur.to] = cur.dist;
+            visited[cur.to] = true;
+            if (cur.to == dest) return cur.dist;
 
             for (Node next: graph.get(cur.to)) {
                 if (visited[next.to]) continue;
