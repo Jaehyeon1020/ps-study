@@ -25,8 +25,6 @@ public class Main {
             maxDist = distSum;
         }
 
-        if (!tree.containsKey(cur)) return;
-
         for (Edge child: tree.get(cur)) {
             if (visited.contains(child.to)) continue;
 
@@ -54,19 +52,22 @@ public class Main {
             tree.get(child).add(new Edge(child, parent, dist));
         }
 
-        // 첫 번재 dfs: 루트에서 가장 먼 노드 찾기
-        maxDist = -1;
-        HashSet<Integer> visited = new HashSet<>();
-        visited.add(1); // root node
-        dfs(1, 0, visited);
+        if (N == 1) bw.write("0");
+        else {
+            // 첫 번재 dfs: 루트에서 가장 먼 노드 찾기
+            maxDist = -1;
+            HashSet<Integer> visited = new HashSet<>();
+            visited.add(1); // root node
+            dfs(1, 0, visited);
 
-        // 두 번째 dfs: 루트에서 가장 먼 노드에서부터 가장 먼 노드 찾기
-        maxDist = -1;
-        visited = new HashSet<>();
-        visited.add(farNode);
-        dfs(farNode, 0, visited);
+            // 두 번째 dfs: 루트에서 가장 먼 노드에서부터 가장 먼 노드 찾기
+            maxDist = -1;
+            visited = new HashSet<>();
+            visited.add(farNode);
+            dfs(farNode, 0, visited);
 
-        bw.write(Integer.toString(maxDist));
+            bw.write(Integer.toString(maxDist));
+        }
         bw.flush();
 
         bw.close();
