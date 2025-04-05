@@ -1,32 +1,26 @@
 import sys
-from collections import deque
 
+sys.setrecursionlimit(10**5)
 input = lambda: sys.stdin.readline().rstrip()
 
 A, B = map(int, input().split())
 
-def bfs():
-    visited = set()
-    q = deque()
-    q.append((A, 0))
-    visited.add(A)
-
-    while q:
-        cur, op = q.popleft()
-
-        if cur == B:
-            return op + 1
-
-        case1 = cur * 2
-        case2 = int(str(cur) + "1")
-
-        if case1 not in visited and case1 <= B:
-            q.append((case1, op + 1))
-            visited.add(case1)
-        if case2 not in visited and case2 <= B:
-            q.append((case2, op + 1))
-            visited.add(case2)
+def backtrack(cur, op):
+    if cur == B:
+        return op + 1
+    if cur > B:
+        return -1
     
-    return -1
+    case1 = backtrack(cur * 2, op + 1)
+    case2 = backtrack(int(str(cur) + "1"), op + 1)
 
-print(bfs())
+    if case1 != -1 and case2 != -1:
+        return min(case1, case2)
+    elif case1 == -1 and case2 == -1:
+        return -1
+    elif case1 == -1:
+        return case2
+    elif case2 == -1:
+        return case1
+
+print(backtrack(A, 0))
