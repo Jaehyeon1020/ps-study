@@ -1,0 +1,8 @@
+SELECT
+    ROUND((SUM(LENGTH) + 10 * (
+        SELECT COUNT(*)
+        FROM FISH_INFO
+        WHERE LENGTH IS NULL
+    )) / COUNT(*), 2) AS AVERAGE_LENGTH
+FROM
+    FISH_INFO;
